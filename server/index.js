@@ -69,3 +69,9 @@ app.post('/values', async (req, res) => {
 app.listen(5000, (err) => {
   console.log('Listening');
 });
+
+app.delete('/values/clear', async (req, res) => {
+  redisClient.flushdb( (err, values) => { });
+  pgClient.query(' DELETE FROM values');
+  res.send({ working: true });
+})

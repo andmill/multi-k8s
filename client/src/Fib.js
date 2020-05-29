@@ -34,6 +34,10 @@ class Fib extends Component {
     this.setState({ index: '' });
   };
 
+  handleClear = async event => {
+    await axios.delete('/api/values/clear');
+  }
+
   renderSeenIndexes() {
     return this.state.seenIndexes.map(({ number }) => number).join(', ');
   }
@@ -61,8 +65,10 @@ class Fib extends Component {
             value={this.state.index}
             onChange={event => this.setState({ index: event.target.value })}
           />
-          <button>Submit</button>
+          <button >Submit</button>
         </form>
+
+        <button onClick={this.handleClear}>Clear</button>
 
         <h3>Indexes I have seen:</h3>
         {this.renderSeenIndexes()}
