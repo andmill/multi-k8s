@@ -16,6 +16,16 @@ spec:
         - www.wildandwaggy.com
       secretName: wild-and-waggy-com
   rules:
+    # - http:
+    #     paths:
+    #       - path: /?(.*)
+    #         backend:
+    #           serviceName: client-cluster-ip-service
+    #           servicePort: 3000
+    #       - path: /api/?(.*)
+    #         backend:
+    #           serviceName: server-cluster-ip-service
+    #           servicePort: 5000
     - host: wildandwaggy.com
       http:
         paths:
@@ -28,6 +38,17 @@ spec:
               serviceName: server-cluster-ip-service
               servicePort: 5000
     - host: www.wildandwaggy.com
+      http:
+        paths:
+          - path: /?(.*)
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /api/?(.*)
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 5000
+    - host: dev.wildandwaggy.com
       http:
         paths:
           - path: /?(.*)
